@@ -51,7 +51,7 @@ export default function NecoInteractive() {
       {/* Cat illustration */}
       <section className="text-center">
         <img
-          src="/neco.png"
+          src={`${import.meta.env.BASE_URL}neco.png`}
           alt="猫のイラスト"
           className="mx-auto max-h-64 object-contain"
           width={400}
