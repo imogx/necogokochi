@@ -12,7 +12,6 @@ export interface Reaction {
 export interface BodyPart {
   id: string;
   name: string;
-  emoji: string;
   reaction: Reaction;
 }
 
@@ -20,7 +19,6 @@ export const bodyParts: BodyPart[] = [
   {
     id: "head",
     name: "頭・耳の後ろ",
-    emoji: "🐱",
     reaction: {
       mood: "love",
       label: "気持ちよさそうに目を細める",
@@ -38,7 +36,6 @@ export const bodyParts: BodyPart[] = [
   {
     id: "chin",
     name: "顎の下",
-    emoji: "😌",
     reaction: {
       mood: "love",
       label: "リラックスして顎を上げる",
@@ -56,7 +53,6 @@ export const bodyParts: BodyPart[] = [
   {
     id: "back",
     name: "背中",
-    emoji: "✋",
     reaction: {
       mood: "neutral",
       label: "背中を軽く反らせる",
@@ -79,7 +75,6 @@ export const bodyParts: BodyPart[] = [
   {
     id: "belly",
     name: "お腹",
-    emoji: "⚠️",
     reaction: {
       mood: "warning",
       label: "警戒して体を丸める・猫パンチの構え",
@@ -102,7 +97,6 @@ export const bodyParts: BodyPart[] = [
   {
     id: "tail-base",
     name: "しっぽの付け根",
-    emoji: "🐈",
     reaction: {
       mood: "neutral",
       label: "腰を持ち上げる・しっぽを立てる",
@@ -120,7 +114,6 @@ export const bodyParts: BodyPart[] = [
   {
     id: "tail-tip",
     name: "しっぽの先",
-    emoji: "😤",
     reaction: {
       mood: "danger",
       label: "不快そうにしっぽを振る",
@@ -131,7 +124,6 @@ export const bodyParts: BodyPart[] = [
   {
     id: "paw",
     name: "肉球",
-    emoji: "🐾",
     reaction: {
       mood: "warning",
       label: "驚いて足を引っ込める",

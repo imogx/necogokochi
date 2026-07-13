@@ -109,7 +109,6 @@ export default function NecoInteractive({ necoImageUrl }: Props) {
                     : "border-gray-200 bg-white text-gray-700 hover:border-gray-300"
                 }`}
               >
-                <span className="mr-1">{part.emoji}</span>
                 {part.name}
               </button>
             );
