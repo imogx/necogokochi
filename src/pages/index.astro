@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+import NecoInteractive from "../components/NecoInteractive";
+---
+
+<Layout>
+  <main>
+    <header class="text-center pt-10 pb-2 px-4">
+      <h1 class="text-3xl font-bold text-amber-900 tracking-wide">
+        ねこごこち
+      </h1>
+      <p class="mt-2 text-sm text-gray-500">
+        猫を触る前に、その子の気持ちを<strong>予習</strong>しよう
+      </p>
+    </header>
+
+    <NecoInteractive client:load />
+
+    <footer class="text-center pb-8 text-xs text-gray-300">
+      © 2025 ねこごこち
+    </footer>
+  </main>
+</Layout>
