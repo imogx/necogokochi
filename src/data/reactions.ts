@@ -56,7 +56,7 @@ export const bodyParts: BodyPart[] = [
   {
     id: "back",
     name: "背中",
-    emoji: "🐾",
+    emoji: "✋",
     reaction: {
       mood: "neutral",
       label: "背中を軽く反らせる",
