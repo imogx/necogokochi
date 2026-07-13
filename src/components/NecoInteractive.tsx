@@ -14,7 +14,11 @@ const catTypeEmoji: Record<CatType, string> = {
   unknown: "🐱",
 };
 
-export default function NecoInteractive() {
+interface Props {
+  necoImageUrl: string;
+}
+
+export default function NecoInteractive({ necoImageUrl }: Props) {
   const [selectedPart, setSelectedPart] = useState<BodyPart | null>(null);
   const [catType, setCatType] = useState<CatType>("unknown");
 
@@ -73,7 +77,7 @@ export default function NecoInteractive() {
       {/* Cat illustration */}
       <section className="text-center">
         <img
-          src={`${import.meta.env.BASE_URL}neco.png`}
+          src={necoImageUrl}
           alt="猫のイラスト"
           className="mx-auto max-h-60 object-contain drop-shadow-sm"
           width={400}
