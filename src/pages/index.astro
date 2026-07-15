@@ -6,8 +6,12 @@ import NecoInteractive from "../components/NecoInteractive";
 <Layout>
   <main>
     <header class="text-center pt-10 pb-2 px-4">
-      <h1 class="text-3xl font-bold text-amber-900 tracking-wide">
-        ねこごこち
+      <h1>
+        <img
+          src={`${import.meta.env.BASE_URL}/title.png`.replace(/\/\//g, '/')}
+          alt="ねこごこち"
+          class="mx-auto w-72 max-w-full"
+        />
       </h1>
       <p class="mt-2 text-sm text-gray-500">
         猫を触る前に、その子の気持ちを<strong>予習</strong>しよう
