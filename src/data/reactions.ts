@@ -271,29 +271,37 @@ export const bodyParts: BodyPart[] = [
   },
 ];
 
-export const catTypes: { id: CatType; label: string; description: string }[] =
-  [
-    {
-      id: "friendly",
-      label: "人懐っこい",
-      description: "初対面でもすり寄ってくるタイプ",
-    },
-    {
-      id: "shy",
-      label: "人見知り",
-      description: "隠れたり、距離を取るタイプ",
-    },
-    {
-      id: "independent",
-      label: "マイペース",
-      description: "気分次第で接し方が変わるタイプ",
-    },
-    {
-      id: "unknown",
-      label: "わからない",
-      description: "まだよく知らない猫",
-    },
-  ];
+export const catTypes: {
+  id: CatType;
+  label: string;
+  description: string;
+  image: string;
+}[] = [
+  {
+    id: "friendly",
+    label: "人懐っこい",
+    description: "初対面でもすり寄ってくるタイプ",
+    image: "cats/cat-friendly.png",
+  },
+  {
+    id: "shy",
+    label: "人見知り",
+    description: "隠れたり、距離を取るタイプ",
+    image: "cats/cat-shy.png",
+  },
+  {
+    id: "independent",
+    label: "マイペース",
+    description: "気分次第で接し方が変わるタイプ",
+    image: "cats/cat-independent.png",
+  },
+  {
+    id: "unknown",
+    label: "わからない",
+    description: "まだよく知らない猫",
+    image: "cats/cat-unknown.png",
+  },
+];
 
 export const moodConfig: Record<
   Mood,

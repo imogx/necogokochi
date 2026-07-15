@@ -7,18 +7,13 @@ import {
   type BodyPart,
 } from "../data/reactions";
 
-const catTypeEmoji: Record<CatType, string> = {
-  friendly: "😸",
-  shy: "🙈",
-  independent: "😼",
-  unknown: "🐱",
-};
 
 interface Props {
   necoImageUrl: string;
+  baseUrl: string;
 }
 
-export default function NecoInteractive({ necoImageUrl }: Props) {
+export default function NecoInteractive({ necoImageUrl, baseUrl }: Props) {
   const [selectedPart, setSelectedPart] = useState<BodyPart | null>(null);
   const [catType, setCatType] = useState<CatType>("unknown");
 
@@ -50,23 +45,29 @@ export default function NecoInteractive({ necoImageUrl }: Props) {
                 key={ct.id}
                 onClick={() => setCatType(ct.id)}
                 aria-pressed={selected}
-                className={`rounded-xl border-2 px-3 py-3 text-left transition-all active:scale-95 ${
+                className={`rounded-xl border-2 p-3 text-left transition-all active:scale-95 flex items-center gap-3 ${
                   selected
                     ? "border-amber-400 bg-amber-50 shadow-sm"
                     : "border-gray-200 bg-white hover:border-amber-200"
                 }`}
               >
-                <span className="flex items-center gap-1.5">
-                  <span className="text-lg">{catTypeEmoji[ct.id]}</span>
-                  <span className="text-sm font-semibold text-gray-800">
-                    {ct.label}
+                <img
+                  src={`${baseUrl}${ct.image}`}
+                  alt={ct.label}
+                  className="w-14 h-14 object-contain shrink-0"
+                />
+                <span className="min-w-0">
+                  <span className="flex items-center gap-1">
+                    <span className="text-sm font-semibold text-gray-800">
+                      {ct.label}
+                    </span>
+                    {selected && (
+                      <span className="text-amber-500 text-xs">✓</span>
+                    )}
                   </span>
-                  {selected && (
-                    <span className="ml-auto text-amber-500 text-xs">✓</span>
-                  )}
-                </span>
-                <span className="text-xs text-gray-500 mt-0.5 block pl-7">
-                  {ct.description}
+                  <span className="text-xs text-gray-500 mt-0.5 block">
+                    {ct.description}
+                  </span>
                 </span>
               </button>
             );
