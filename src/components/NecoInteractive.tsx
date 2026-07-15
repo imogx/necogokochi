@@ -9,11 +9,10 @@ import {
 
 
 interface Props {
-  necoImageUrl: string;
   baseUrl: string;
 }
 
-export default function NecoInteractive({ necoImageUrl, baseUrl }: Props) {
+export default function NecoInteractive({ baseUrl }: Props) {
   const [selectedPart, setSelectedPart] = useState<BodyPart | null>(null);
   const [catType, setCatType] = useState<CatType>("unknown");
 
@@ -75,18 +74,6 @@ export default function NecoInteractive({ necoImageUrl, baseUrl }: Props) {
         </div>
       </section>
 
-      {/* Cat illustration */}
-      <section className="text-center">
-        <img
-          src={necoImageUrl}
-          alt="猫のイラスト"
-          className="mx-auto max-h-60 object-contain drop-shadow-sm"
-          width={400}
-          height={400}
-        />
-        <p className="text-xs text-gray-400 mt-2">↓ 触る部位を選んでね</p>
-      </section>
-
       {/* Body part buttons */}
       <section aria-labelledby="body-part-label">
         <p id="body-part-label" className="sr-only">
@@ -134,7 +121,7 @@ export default function NecoInteractive({ necoImageUrl, baseUrl }: Props) {
               </p>
               {isOverridden && currentCatType && (
                 <p className={`text-xs mt-0.5 opacity-70 ${mood.color}`}>
-                  {catTypeEmoji[catType]} {currentCatType.label}な猫の場合
+                  {currentCatType.label}な猫の場合
                 </p>
               )}
             </div>
