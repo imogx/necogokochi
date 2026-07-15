@@ -7,7 +7,6 @@ import {
   type BodyPart,
 } from "../data/reactions";
 
-
 interface Props {
   baseUrl: string;
 }
@@ -30,13 +29,14 @@ export default function NecoInteractive({ baseUrl }: Props) {
   const currentCatType = catTypes.find((ct) => ct.id === catType);
 
   return (
-    <div className="max-w-lg mx-auto px-4 py-6 space-y-6">
+    <div className="max-w-lg mx-auto px-4 py-4 pb-10 space-y-4">
+
       {/* Cat type selector */}
-      <section aria-labelledby="cat-type-label">
-        <p id="cat-type-label" className="text-sm text-gray-500 mb-3 text-center">
-          触れ合う猫のタイプを選んでください
+      <section className="bg-white rounded-3xl border border-stone-100 shadow-sm p-5">
+        <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4 text-center">
+          猫のタイプを選ぶ
         </p>
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-2 gap-3">
           {catTypes.map((ct) => {
             const selected = catType === ct.id;
             return (
@@ -44,30 +44,34 @@ export default function NecoInteractive({ baseUrl }: Props) {
                 key={ct.id}
                 onClick={() => setCatType(ct.id)}
                 aria-pressed={selected}
-                className={`rounded-xl border-2 p-3 text-left transition-all active:scale-95 flex items-center gap-3 ${
+                className={`rounded-2xl border-2 py-4 px-3 text-center transition-all duration-150 active:scale-95 flex flex-col items-center gap-2 ${
                   selected
-                    ? "border-amber-400 bg-amber-50 shadow-sm"
-                    : "border-gray-200 bg-white hover:border-amber-200"
+                    ? "border-amber-400 bg-amber-50 shadow-md"
+                    : "border-stone-100 bg-stone-50 hover:border-amber-200 hover:bg-amber-50/30"
                 }`}
               >
                 <img
                   src={`${baseUrl}${ct.image}`}
                   alt={ct.label}
-                  className="w-14 h-14 object-contain shrink-0"
+                  className={`w-20 h-20 object-contain transition-transform duration-200 ${
+                    selected ? "scale-110" : ""
+                  }`}
                 />
-                <span className="min-w-0">
-                  <span className="flex items-center gap-1">
-                    <span className="text-sm font-semibold text-gray-800">
-                      {ct.label}
-                    </span>
+                <div className="text-center">
+                  <p
+                    className={`text-sm font-bold ${
+                      selected ? "text-amber-700" : "text-gray-700"
+                    }`}
+                  >
+                    {ct.label}
                     {selected && (
-                      <span className="text-amber-500 text-xs">✓</span>
+                      <span className="ml-1 text-amber-400 text-xs">✓</span>
                     )}
-                  </span>
-                  <span className="text-xs text-gray-500 mt-0.5 block">
+                  </p>
+                  <p className="text-xs text-gray-400 mt-0.5 leading-tight">
                     {ct.description}
-                  </span>
-                </span>
+                  </p>
+                </div>
               </button>
             );
           })}
@@ -75,9 +79,9 @@ export default function NecoInteractive({ baseUrl }: Props) {
       </section>
 
       {/* Body part buttons */}
-      <section aria-labelledby="body-part-label">
-        <p id="body-part-label" className="sr-only">
-          触る部位を選んでください
+      <section className="bg-white rounded-3xl border border-stone-100 shadow-sm p-5">
+        <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4 text-center">
+          触る部位を選ぶ
         </p>
         <div className="flex flex-wrap gap-2 justify-center">
           {bodyParts.map((part) => {
@@ -91,10 +95,10 @@ export default function NecoInteractive({ baseUrl }: Props) {
                   setSelectedPart((prev) => (prev?.id === part.id ? null : part))
                 }
                 aria-pressed={isSelected}
-                className={`rounded-full border-2 px-4 py-2.5 text-sm font-medium transition-all active:scale-95 ${
+                className={`rounded-full border-2 px-4 py-2 text-sm font-medium transition-all duration-150 active:scale-95 ${
                   isSelected
                     ? `${m.border} ${m.bg} ${m.color} shadow-sm`
-                    : "border-gray-200 bg-white text-gray-700 hover:border-gray-300"
+                    : "border-stone-200 bg-stone-50 text-gray-600 hover:border-stone-300 hover:bg-white"
                 }`}
               >
                 {part.name}
@@ -109,41 +113,42 @@ export default function NecoInteractive({ baseUrl }: Props) {
         <section
           role="status"
           aria-live="polite"
-          className={`rounded-2xl border-2 p-5 space-y-3 ${mood.bg} ${mood.border}`}
+          className={`rounded-3xl border-2 p-6 transition-all duration-200 ${mood.bg} ${mood.border}`}
         >
-          <div className="flex items-start gap-2">
-            <span className="text-2xl mt-0.5" aria-hidden>
+          <div className="flex items-start gap-4 mb-3">
+            <span className="text-4xl shrink-0 leading-none mt-0.5" aria-hidden>
               {mood.icon}
             </span>
-            <div>
-              <p className={`font-bold text-base leading-snug ${mood.color}`}>
+            <div className="min-w-0">
+              <p className={`font-bold text-lg leading-snug ${mood.color}`}>
                 {reaction.label}
               </p>
               {isOverridden && currentCatType && (
-                <p className={`text-xs mt-0.5 opacity-70 ${mood.color}`}>
+                <span
+                  className={`inline-block text-xs mt-1.5 px-2.5 py-0.5 rounded-full bg-white/60 font-medium ${mood.color}`}
+                >
                   {currentCatType.label}な猫の場合
-                </p>
+                </span>
               )}
             </div>
           </div>
-          <p className={`text-sm leading-relaxed ${mood.color}`}>
+          <p className={`text-sm leading-relaxed ${mood.color} opacity-90`}>
             {reaction.description}
           </p>
         </section>
       ) : (
         <section
           aria-hidden
-          className="rounded-2xl border-2 border-dashed border-gray-200 bg-gray-50 p-6 text-center"
+          className="rounded-3xl border-2 border-dashed border-stone-200 bg-stone-50/50 p-8 text-center"
         >
-          <p className="text-3xl mb-1">🐾</p>
+          <p className="text-4xl mb-2">🐾</p>
           <p className="text-sm text-gray-400">部位を選ぶと猫の反応が表示されます</p>
         </section>
       )}
 
       {/* Disclaimer */}
-      <p className="text-xs text-gray-400 text-center leading-relaxed pb-2">
-        ※ これは一般的な傾向であり、すべての猫に当てはまるものではありません。
-        個体差があることをご了承ください。
+      <p className="text-xs text-gray-300 text-center leading-relaxed px-2">
+        ※ 個体差があるため、すべての猫に当てはまるものではありません
       </p>
     </div>
   );
